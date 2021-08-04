@@ -1,0 +1,9 @@
+<h1><%=@client.email %> </h1>
+<h4><%=@client.name %></h4>
+<h5><%=@client.surname %></h5>
+<h5><%=@client.patronymic %></h5>
+<h6><%=@client.phone_number %></h6>
+<% unless @followers.nil? %>
+  <h5>subscribers <%=@followers.size%></h5>
+<% end %>
+<%=link_to '<button>Edit profile</button>'.html_safe, edit_client_registration_path if @client.id == current_client.id%>
