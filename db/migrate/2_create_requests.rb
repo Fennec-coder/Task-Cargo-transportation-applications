@@ -6,5 +6,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.string :distance
       t.timestamps
     end
+
+    add_reference :requests, :client, foreign_key: true
   end
 end

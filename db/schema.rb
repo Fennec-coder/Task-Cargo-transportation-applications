@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2021_08_03_180155) do
     t.string "height"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "request_id"
+    t.index ["request_id"], name: "index_cargos_on_request_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -72,6 +74,10 @@ ActiveRecord::Schema.define(version: 2021_08_03_180155) do
     t.string "distance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_requests_on_client_id"
   end
 
+  add_foreign_key "cargos", "requests"
+  add_foreign_key "requests", "clients"
 end

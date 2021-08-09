@@ -8,5 +8,6 @@ class CreateCargos < ActiveRecord::Migration[6.1]
       t.string :height
       t.timestamps
     end
+    add_reference :cargos, :request, foreign_key: true
   end
 end
