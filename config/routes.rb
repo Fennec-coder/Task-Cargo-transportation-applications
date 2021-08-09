@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   root 'public#home'
 
   resources :clients, only: [:new, :create, :edit, :show] do
-    resources :request
+    resources :requests
+  end
+
+  resources :requests, only: [:new, :create, :edit, :show] do
+    resources :cargos
   end
 end

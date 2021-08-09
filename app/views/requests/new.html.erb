@@ -1,0 +1,18 @@
+<h2>Create a request for transportation </h2>
+<%= form_for [@client, @request], html: { multipart: true } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :origin_location %>* <br>
+    <%= f.text_field :origin_location, class: "form-control"%>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :destination %>* <br>
+    <%= f.text_field :destination, class: "form-control"%>
+  </div>
+  <br>
+
+  <%= f.submit "Sent", class: "btn btn-success"%>
+
+<% end %>

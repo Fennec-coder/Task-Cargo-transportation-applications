@@ -3,7 +3,10 @@
 <h5><%=@client.surname %></h5>
 <h5><%=@client.patronymic %></h5>
 <h6><%=@client.phone_number %></h6>
-<% unless @followers.nil? %>
-  <h5>subscribers <%=@followers.size%></h5>
+
+
+<% if @client.id == current_client.id %>
+  <%= button_to 'Edit profile', edit_client_registration_path, :method => :get %>
+  <br>
+  <%= button_to 'create request', new_client_request_path(@client), :method => :get %>
 <% end %>
-<%=link_to '<button>Edit profile</button>'.html_safe, edit_client_registration_path if @client.id == current_client.id%>
