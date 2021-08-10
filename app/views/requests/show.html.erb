@@ -1,4 +1,4 @@
-<h1>Create by <%= @client.surname %></h1>
+<h1>Create by <%= link_to "#{@client.surname}", client_path(@client) %></h1>
 <br>
 <br>
 <h6>id:  <%= @request.id %></h6>

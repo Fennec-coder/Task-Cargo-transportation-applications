@@ -5,10 +5,10 @@ class CargosController < ApplicationController
   end
 
   def show
-    @cargos = Cargo.find(params[:id])
-    @request = Request.find(@cargos.request_id)
-    @coefficient_for_cargo = rate(@cargos.length, @cargos.width, @cargos.height)
-    @price = @coefficient_for_cargo * bringing_the_distance(@request.distance)
+    @cargo = Cargo.find(params[:id])
+    @request = Request.find(@cargo.request_id)
+    @coefficient_for_cargo = rate(@cargo.length.to_i, @cargo.width.to_i, @cargo.height.to_i, @cargo.weight.to_i)
+    @price = @coefficient_for_cargo * bringing_the_distance(@request.distance.to_i)
     end
 
   def new
@@ -21,8 +21,9 @@ class CargosController < ApplicationController
   def create
     @request = Request.find(params[:request_id])
     @cargo = Cargo.new(cargo_params)
-    if @cargo.save
-      redirect_to @cargo, flash: {success: 'Cargo was added'}
+    @cargo.request_id = params[:request_id]
+      if @cargo.save
+      redirect_to request_cargo_path(@request, @cargo), flash: {success: 'Cargo was added'}
     else
       render :new, flash: {alert: 'Some error occured'}
     end
@@ -51,10 +52,10 @@ class CargosController < ApplicationController
   end
 
   # @return [integer]
-  def rate(length, width, height)
+  def rate(length, width, height, weight)
     cubic_meter = length * width * height
     if cubic_meter > 1
-      if @weight > 10
+      if weight > 10
         3
       else
         2

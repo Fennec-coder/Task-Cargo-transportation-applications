@@ -1,0 +1,12 @@
+<br>
+<h3><%= link_to "<<< back to request", request_path(@request) %></h3>
+<br>
+
+<h1>Info about cargo where id = <%= @cargo.id %></h1>
+<p>weight : <%= @cargo.weight %></p>
+<p>length : <%= @cargo.length %></p>
+<p>width  : <%= @cargo.width %></p>
+<p>height : <%= @cargo.height %></p>
+<p>Ratio per kilometer : <%= @coefficient_for_cargo %> монет</p>
+<br>
+<p>The price for the transportation of this particular cargo is <%= @price %> монет</p>
