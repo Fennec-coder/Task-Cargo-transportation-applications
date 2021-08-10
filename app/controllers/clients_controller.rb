@@ -3,5 +3,6 @@ class ClientsController < ApplicationController
 
   def show
     @client = current_client
+    @requests = Request.where(client_id: @client.id)
   end
 end

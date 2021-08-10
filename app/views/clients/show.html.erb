@@ -8,5 +8,26 @@
 <% if @client.id == current_client.id %>
   <%= button_to 'Edit profile', edit_client_registration_path, :method => :get %>
   <br>
-  <%= button_to 'create request', new_client_request_path(@client), :method => :get %>
+  <%= button_to 'Create request', new_client_request_path(@client), :method => :get %>
 <% end %>
+
+<h1>Your requests</h1>
+
+<table>
+  <tr>
+    <th>id</th>
+    <th>origin_location</th>
+    <th>destination</th><th>
+    distance</th>
+    <th>price</th>
+  </tr>
+  <% @requests.each do |request| %>
+    <tr>
+      <td><%= link_to "#{request.id}", client_request_path(@client, request) %></td>
+      <td><%= request.origin_location %></td>
+      <td><%= request.destination %></td>
+      <td><%= request.distance %></td>
+      <td>NOT READY</td>
+    </tr>
+  <% end %>
+</table>
