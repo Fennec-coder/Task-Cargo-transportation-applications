@@ -39,7 +39,6 @@
       <th>origin_location</th>
       <th>destination</th>
       <th>distance</th>
-      <th>price</th>
     </tr>
     <% @requests.each do |request| %>
       <tr>
@@ -47,7 +46,6 @@
         <td><%= request.origin_location %></td>
         <td><%= request.destination %></td>
         <td><%= request.distance %></td>
-        <td>NOT READY</td>
       </tr>
     <% end %>
   </table>

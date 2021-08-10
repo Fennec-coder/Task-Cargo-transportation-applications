@@ -1,4 +1,7 @@
+require 'calculation_of_cargo'
+
 class RequestsController < ApplicationController
+  include CalculationOfCargo
   SOURCE = 'https://api.mapbox.com/directions-matrix/v1/mapbox/driving/'
 
   def index
@@ -8,6 +11,12 @@ class RequestsController < ApplicationController
   def show
     @request = Request.find(params[:id])
     @client = Client.find(@request.client_id)
+    @price = 0
+
+    Cargo.where(request_id: @request.id).each do |cargo|
+      @price += price_of_cargo(@request, cargo)
+    end
+
   end
 
   def new
@@ -51,20 +60,6 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:origin_location, :destination)
-  end
-
-  def calculate_distance(origin_location, destination)
-    uri = URI("#{SOURCE}#{origin_location.to_s.gsub(' ', '')};#{destination.to_s.gsub(' ', '')}")
-
-    params = { access_token: 'pk.eyJ1IjoiZmVubmVjLWNvZGVyIiwiYSI6ImNrcnVqcm1nMzEyd2kyb25wOXpvZGsyYzQifQ.z57wncCzhCu2Bb0RNJDHjA', sources: 0, annotations: 'distance' }
-
-    uri.query = URI.encode_www_form(params)
-    res = Net::HTTP.get_response(uri)
-    response = res.body if res.is_a?(Net::HTTPSuccess)
-    answer_json = JSON.parse(response)['distances'][0][1]
-    raise 'The path was not found by the server (API)' if answer_json.nil?
-
-    answer_json.to_i
   end
 
 end

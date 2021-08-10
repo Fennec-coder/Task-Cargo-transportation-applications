@@ -1,15 +1,23 @@
+require 'calculation_of_cargo'
+
 class CargosController < ApplicationController
+  include CalculationOfCargo
+
   def index
     @request = Request.find(params[:request_id])
     @cargos = Cargo.where(request_id: params[:request_id])
+    @price = Hash.new
+
+    @cargos.each do |cargo|
+      @price.store(cargo.id, price_of_cargo(@request, cargo))
+    end
   end
 
   def show
     @cargo = Cargo.find(params[:id])
     @request = Request.find(@cargo.request_id)
-    @coefficient_for_cargo = rate(@cargo.length.to_i, @cargo.width.to_i, @cargo.height.to_i, @cargo.weight.to_i)
-    @price = @coefficient_for_cargo * bringing_the_distance(@request.distance.to_i)
-    end
+    @price = price_of_cargo(@request, @cargo)
+  end
 
   def new
     @request = Request.find(params[:request_id])
@@ -49,25 +57,5 @@ class CargosController < ApplicationController
 
   def cargo_params
     params.require(:cargo).permit(:weight, :length , :width, :height, :request_id)
-  end
-
-  # @return [integer]
-  def rate(length, width, height, weight)
-    cubic_meter = length * width * height
-    if cubic_meter > 1
-      if weight > 10
-        3
-      else
-        2
-      end
-    else
-      1
-    end
-  end
-
-  def bringing_the_distance(distance)
-    distance_charge = distance / 1000
-    distance_charge = 1 if distance_charge < 1
-    distance_charge
   end
 end
