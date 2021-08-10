@@ -1,33 +1,54 @@
 <h1><%=@client.email %> </h1>
-<h4><%=@client.name %></h4>
-<h5><%=@client.surname %></h5>
-<h5><%=@client.patronymic %></h5>
-<h6><%=@client.phone_number %></h6>
-
-
-<% if @client.id == current_client.id %>
-  <%= button_to 'Edit profile', edit_client_registration_path, :method => :get %>
-  <br>
-  <%= button_to 'Create request', new_client_request_path(@client), :method => :get %>
-<% end %>
-
-<h1>Your requests</h1>
-
-<table>
-  <tr>
-    <th>id</th>
-    <th>origin_location</th>
-    <th>destination</th>
-    <th>distance</th>
-    <th>price</th>
-  </tr>
-  <% @requests.each do |request| %>
+<div class="table-info">
+  <table class="fl-table">
     <tr>
-      <td><%= link_to "#{request.id}", client_request_path(@client, request) %></td>
-      <td><%= request.origin_location %></td>
-      <td><%= request.destination %></td>
-      <td><%= request.distance %></td>
-      <td>NOT READY</td>
+      <td>NAME</td>
+      <td><%=@client.name %></td>
     </tr>
-  <% end %>
-</table>
+      <td>SURNAME</td>
+      <td><%=@client.surname %></td>
+    <tr>
+      <td>PATRONYMIC</td>
+      <td><%=@client.patronymic %></td>
+    </tr>
+    <tr>
+      <td>PHONE NUMBER</td>
+      <td><%=@client.phone_number %></td>
+    </tr>
+  </table>
+</div>
+
+<div class="table-info">
+  <table class="fl-table">
+    <tr>
+      <% if @client.id == current_client.id %>
+        <td><%= button_to 'Edit profile', edit_client_registration_path, :method => :get %></td>
+        <td><%= button_to 'Create request', new_client_request_path(@client), :method => :get %></td>
+      <% end %>
+    </tr>
+  </table>
+</div>
+
+
+
+  <h2>Your requests</h2>
+<div class="table-wrapper">
+  <table class="fl-table">
+    <tr>
+      <th>id</th>
+      <th>origin_location</th>
+      <th>destination</th>
+      <th>distance</th>
+      <th>price</th>
+    </tr>
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= link_to "#{request.id}", client_request_path(@client, request) %></td>
+        <td><%= request.origin_location %></td>
+        <td><%= request.destination %></td>
+        <td><%= request.distance %></td>
+        <td>NOT READY</td>
+      </tr>
+    <% end %>
+  </table>
+</div>

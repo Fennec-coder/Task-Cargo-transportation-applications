@@ -11,10 +11,8 @@
   </head>
 
   <body>
-  <table>
+  <table class="fl-table">
     <tr>
-      <td>TEST..</td>
-      <td></td>
       <td><a href="/" > Home </a></td>
       <%if client_signed_in? %>
         <td><%= link_to 'Profile', client_path(current_client) %></td>

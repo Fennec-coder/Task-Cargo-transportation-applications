@@ -2,23 +2,25 @@
 <h3><%= link_to "<<< back to request", request_path(@request) %></h3>
 <br>
 <% if @cargos.any? %>
-  <table>
-    <tr>
-      <th>id</th>
-      <th>weight</th>
-      <th>created at</th>
-      <th>price</th>
-    </tr>
-
-    <% @cargos.each do |cargo| %>
+  <div class="table-wrapper">
+    <table class="fl-table">
       <tr>
-        <td><%= link_to "#{cargo.id}", request_cargo_path(cargo.request_id, cargo) %></td>
-        <td><%= cargo.weight %></td>
-        <td><%= cargo.created_at %></td>
-        <td>NOT READY</td>
+        <th>id</th>
+        <th>weight</th>
+        <th>created at</th>
+        <th>price</th>
       </tr>
-    <% end %>
-  </table>
+
+      <% @cargos.each do |cargo| %>
+        <tr>
+          <td><%= link_to "#{cargo.id}", request_cargo_path(cargo.request_id, cargo) %></td>
+          <td><%= cargo.weight %></td>
+          <td><%= cargo.created_at %></td>
+          <td>NOT READY</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 <% else %>
   <h1>Request id=<%= @request.id %> has no cargo </h1>
 <% end %>
