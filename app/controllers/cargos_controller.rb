@@ -1,5 +1,6 @@
 class CargosController < ApplicationController
   def index
+    @request = Request.find(params[:request_id])
     @cargos = Cargo.where(request_id: params[:request_id])
   end
 
@@ -11,22 +12,24 @@ class CargosController < ApplicationController
     end
 
   def new
-    @cargos = Cargo.new
+    @request = Request.find(params[:request_id])
+    @cargo = Cargo.new
   end
 
   # since there can be more than one cargo during one transportation,
   # then the cargo has a transportation (request) ID to which it belongs
   def create
-    @cargos = Cargo.new(cargo_params)
-    if @cargos.save
-      redirect_to @cargos, flash: {success: 'Cargo was added'}
+    @request = Request.find(params[:request_id])
+    @cargo = Cargo.new(cargo_params)
+    if @cargo.save
+      redirect_to @cargo, flash: {success: 'Cargo was added'}
     else
       render :new, flash: {alert: 'Some error occured'}
     end
   end
 
   def edit
-    @cargos = Cargo.find(params[:id])
+    @cargo = Cargo.find(params[:id])
   end
 
   def update
@@ -36,9 +39,9 @@ class CargosController < ApplicationController
   end
 
   def destroy
-    @cargos = Cargo.find(params[:id])
-    id_of_request = @cargos.request_id
-    @cargos.destroy
+    @cargo = Cargo.find(params[:id])
+    id_of_request = @cargo.request_id
+    @cargo.destroy
 
     redirect_to request_path(id_of_request)
   end

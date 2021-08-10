@@ -6,5 +6,8 @@
 <p>to:   <%= @request.destination %></p>
 <p>distance: <%= @request.distance %></p>
 <p>created at: <%= @request.created_at %></p>
-<%= button_to 'show cargos', request_cargos_path(@request), :method => :get  %>
-<br><br>
+<br>
+<%= button_to 'Show cargos', request_cargos_path(@request), :method => :get  %>
+<br>
+<%= button_to 'Create cargo', new_request_cargo_path(@request), :method => :get  %>
+<br>

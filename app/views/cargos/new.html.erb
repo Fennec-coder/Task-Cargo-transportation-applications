@@ -1,5 +1,10 @@
+<br>
+<h3><%= link_to "<<< back to request", request_path(@request) %></h3>
+<br>
 <h2>Create a cargo for transportation </h2>
-<%= form_for [@client, @request], html: { multipart: true } do |f| %>
+<h4>The cargo will be added to the application id=<%= @request.id %></h4>
+
+<%= form_for [@request, @cargo], html: { multipart: true } do |f| %>
 
   <div class="form-group">
     <%= f.label :weight %>* <br>
@@ -25,12 +30,6 @@
   </div>
   <br>
 
-  <div class="form-group">
-    <p>Refers to the requests*</p><br>
-    <%= f.collection_select :request_id, Request.where(client_id: current_client ),:id, :name, include_blank: true %>
-  </div>
-  <br>
-
-  <%= f.submit "Sent", class: "btn btn-success"%>
+  <%= f.submit "Add", class: "btn btn-success"%>
 
 <% end %>
