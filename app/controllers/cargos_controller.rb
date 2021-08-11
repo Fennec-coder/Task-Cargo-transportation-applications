@@ -2,6 +2,7 @@ require 'calculation_of_cargo'
 
 class CargosController < ApplicationController
   include CalculationOfCargo
+  before_action :authenticate_client!
 
   def index
     @request = Request.find(params[:request_id])

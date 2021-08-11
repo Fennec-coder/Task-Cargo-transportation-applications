@@ -9,3 +9,12 @@
 <p>height : <%= @cargo.height %></p>
 <br>
 <p>The price for the transportation of this particular cargo is <%= @price %> монет</p>
+
+<br>
+<br>
+<br>
+<% if current_client.id == @request.client_id %>
+  <p>Dangerous zone</p>
+  <p>Delete request</p>
+  <p><%= button_to "Delete", request_cargo_path(@request, @cargo), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<% end %>

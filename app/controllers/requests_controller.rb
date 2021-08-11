@@ -2,6 +2,7 @@ require 'calculation_of_cargo'
 
 class RequestsController < ApplicationController
   include CalculationOfCargo
+  before_action :authenticate_client!
   SOURCE = 'https://api.mapbox.com/directions-matrix/v1/mapbox/driving/'
 
   def index
