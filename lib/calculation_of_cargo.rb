@@ -1,6 +1,8 @@
 module CalculationOfCargo
   def calculate_distance(origin_location, destination)
-    uri = URI("#{SOURCE}#{origin_location.to_s.gsub(' ', '')};#{destination.to_s.gsub(' ', '')}")
+    source_url = 'https://api.mapbox.com/directions-matrix/v1/mapbox/driving/'
+
+    uri = URI("#{source_url}#{origin_location.to_s.gsub(' ', '')};#{destination.to_s.gsub(' ', '')}")
 
     params = { access_token: 'pk.eyJ1IjoiZmVubmVjLWNvZGVyIiwiYSI6ImNrcnVqcm1nMzEyd2kyb25wOXpvZGsyYzQifQ.z57wncCzhCu2Bb0RNJDHjA', sources: 0, annotations: 'distance' }
 

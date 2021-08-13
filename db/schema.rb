@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2021_08_03_180155) do
   end
 
   create_table "cargos", force: :cascade do |t|
-    t.string "weight"
-    t.string "length"
-    t.string "width"
-    t.string "height"
+    t.float "weight"
+    t.float "length"
+    t.float "width"
+    t.float "height"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "request_id"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_180155) do
   create_table "requests", force: :cascade do |t|
     t.string "origin_location"
     t.string "destination"
-    t.string "distance"
+    t.float "distance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "client_id"

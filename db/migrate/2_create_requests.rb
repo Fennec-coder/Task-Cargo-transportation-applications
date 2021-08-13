@@ -3,7 +3,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
     create_table :requests do |t|
       t.string :origin_location
       t.string :destination
-      t.string :distance
+      t.float :distance
       t.timestamps
     end
 
