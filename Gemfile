@@ -53,3 +53,21 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+
+gem 'activeadmin'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0.0'
+end
+
+group :development, :test do
+  gem 'factory_bot_rails'
+end
+
+group :development, :test do
+  gem 'ffaker'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 5.0'
+end

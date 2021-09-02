@@ -1,0 +1,23 @@
+<h1>Create by <%= link_to "#{@client.surname}", client_path(@client) %></h1>
+<br>
+<br>
+<p>id:  <%= @request.id %></p>
+<p>from: <%= @request.origin_location %></p>
+<p>to:   <%= @request.destination %></p>
+<p>distance: <%= @request.distance %></p>
+<p>created at: <%= @request.created_at %></p>
+<br>
+<p>price: <%= @price %> монет</p>
+<br>
+<%= button_to 'Show cargos', request_cargos_path(@request), :method => :get  %>
+<br>
+<%= button_to 'Create cargo', new_request_cargo_path(@request), :method => :get  %>
+
+<br>
+<br>
+<br>
+<% if current_client.id == @request.client_id %>
+  <p>Dangerous zone</p>
+  <p>Delete request</p>
+  <p><%= button_to "Delete", client_request_path(@client, @request), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<% end %>
