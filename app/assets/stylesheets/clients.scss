@@ -1,0 +1,44 @@
+// Place all the styles related to the clients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  background-color: #eee;
+  font-family: 'Roboto', sans-serif
+}
+
+.card {
+  background-color: #B9F6CA;
+  width: 350px;
+  border-radius: 20px
+}
+
+.heading {
+  font-weight: 700
+}
+
+.hour {
+  margin-top: 1px;
+  color: green;
+  font-size: 12px
+}
+
+.ratings i {
+  color: #388E3C
+}
+
+.btn {
+  border-radius: 15px !important
+}
+
+.line-color {
+  color: green;
+  height: 3px
+}
+
+.table-info{
+  margin: 5px 400px 70px;
+  box-shadow: 0 35px 50px rgba( 0, 0, 0, 0.2 );
+}

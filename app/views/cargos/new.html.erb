@@ -1,0 +1,35 @@
+<br>
+<h3><%= link_to "<<< back to request", request_path(@request) %></h3>
+<br>
+<h2>Create a cargo for transportation </h2>
+<h4>The cargo will be added to the application id=<%= @request.id %></h4>
+
+<%= form_for [@request, @cargo], html: { multipart: true } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :weight %>* <br>
+    <%= f.text_field :weight, class: "form-control"%>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :length %>* <br>
+    <%= f.text_field :length, class: "form-control"%>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :width %>* <br>
+    <%= f.text_field :width, class: "form-control"%>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :height %>* <br>
+    <%= f.text_field :height, class: "form-control"%>
+  </div>
+  <br>
+
+  <%= f.submit "Sent", class: "btn btn-success"%>
+
+<% end %>

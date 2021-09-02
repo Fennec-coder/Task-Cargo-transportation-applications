@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RubyTest</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <table class="fl-table">
+    <tr>
+      <td><a href="/" > Home </a></td>
+      <%if client_signed_in? %>
+        <td><%= link_to 'Profile', client_path(current_client) %></td>
+        <td><%= link_to 'Sign out', destroy_client_session_path, method: :delete %></td>
+      <%else %>
+        <td><%= link_to 'Sign in', new_client_session_path%></td>
+        <td><%= link_to 'Sign up', new_client_registration_path %></td>
+      <%end%>
+    </tr>
+  </table>
+    <%= yield %>
+  </body>
+</html>

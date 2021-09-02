@@ -1,0 +1,20 @@
+<br>
+<h3><%= link_to "<<< back to list of cargos", request_cargos_path(@request) %></h3>
+<br>
+
+<p>Info about cargo where id = <%= @cargo.id %></p>
+<p>weight : <%= @cargo.weight %></p>
+<p>length : <%= @cargo.length %></p>
+<p>width  : <%= @cargo.width %></p>
+<p>height : <%= @cargo.height %></p>
+<br>
+<p>The price for the transportation of this particular cargo is <%= @price %> монет</p>
+
+<br>
+<br>
+<br>
+<% if current_client.id == @request.client_id %>
+  <p>Dangerous zone</p>
+  <p>Delete request</p>
+  <p><%= button_to "Delete", request_cargo_path(@request, @cargo), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<% end %>

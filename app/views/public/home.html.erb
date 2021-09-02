@@ -1,0 +1,18 @@
+<% if client_signed_in? %>
+
+  <% @requests.each do |request| %>
+
+    <p>id:  <%= request.id %></p>
+    <p>from: <%= request.origin_location %></p>
+    <p>to:   <%= request.destination %></p>
+    <p>distance: <%= request.distance %></p>
+    <p>created at: <%= request.created_at %></p>
+    <%= button_to 'show', client_request_path(request.client_id, request), :method => :get  %>
+    <br><br>
+
+  <%end %>
+
+<%  else  %>
+<h1>Hello there!!</h1>
+<p>Sign in or register</p>
+<% end %>
